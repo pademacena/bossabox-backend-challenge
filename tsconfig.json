@@ -7,6 +7,7 @@
     "strict": true,
     "rootDir": "./src", // Diretório raiz de entrada
     "resolveJsonModule": true,
+    "skipLibCheck": true
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules"]

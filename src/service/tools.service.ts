@@ -12,7 +12,7 @@ export class ToolsService {
       const result = await toolsSchema.create(tools);
       return result;
     }catch(err) {
-      throw new Error(`Erro create User ${err}`);
+      throw new Error(`Erro create Tools ${err}`);
     }
   }
 
@@ -23,7 +23,7 @@ export class ToolsService {
       const result = await toolsSchema.find(tag ? {tags: {$in: [tag]}} : {}); 
       return result;
     }catch(err) {
-      throw new Error(`Erro create User ${err}`);
+      throw new Error(`Erro create Tools ${err}`);
     }
   }
 
@@ -31,10 +31,15 @@ export class ToolsService {
     const toolsSchema = ToolsSchema;
 
     try{
-      const result = await toolsSchema.deleteOne();
+      const check = await toolsSchema.findById(_id);
+      if(!check) {
+        console.log('tools not found %s ', _id);
+        throw new Error(`tools not found`);
+      }
+      const result = await toolsSchema.deleteOne({_id});
       return result;
     }catch(err) {
-      throw new Error(`Erro create User ${err}`);
+      throw new Error(`Erro create Tools ${err}`);
     }
   }
 }

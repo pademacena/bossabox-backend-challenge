@@ -13,7 +13,7 @@ export default new class ToolsController {
       return res.status(HttpStatusCode?.Created).json(result);
     } catch(err) {
       console.error('Esse é o erro: ',err);
-      return res.status(HttpStatusCode?.Forbidden).json({message: 'Error in procees'});
+      return res.status(HttpStatusCode?.Forbidden).json({message: 'Error in create tools'});
     }
   }
 
@@ -26,7 +26,7 @@ export default new class ToolsController {
       return res.status(HttpStatusCode?.OK).json(result);
     } catch(err) {
       console.error('Esse é o erro: ',err);
-      return res.status(HttpStatusCode?.Forbidden).json({message: 'Error in procees'});
+      return res.status(HttpStatusCode?.Forbidden).json({message: 'Error in list tools'});
     }
   }
 
@@ -35,11 +35,11 @@ export default new class ToolsController {
 
     try{
       const id = req?.params?.id;
-      const result = await service.delete(id);
+      await service.delete(id);
       return res.status(HttpStatusCode?.OK).json({});
     } catch(err) {
       console.error('Esse é o erro: ',err);
-      return res.status(HttpStatusCode?.Forbidden).json({message: 'Error in procees'});
+      return res.status(HttpStatusCode?.Forbidden).json({message: 'Error in delete tools'});
     }
   }
 }
