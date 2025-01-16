@@ -172,3 +172,21 @@ Resposta:
 ```jsx
 {}
 ```
+
+# Informações de execução do projeto
+
+Abaixo estão as informações para executar o projeto que foi desenvolvido nesse repositório.
+
+## Pelo Repositório
+
+Realize o `git clone` do repositório.
+
+É recomendado que esteja usando a `v22.9.0` do node em sua maquina.
+
+Após confirmar a versão do node e ter o repositório na sua máquina execute o `npm install` para instalar as dependencias do projeto para poder executar.
+
+No arquivo `.env_template` temos o templete do `.env`, crie o seu com a conexão do MongoDb que ja você já tenha instanciado.
+
+Para rodar os testes unitários execute o comando `npm run test`, ele já esta configurado corretamente e fará todas as validações necessárias.
+
+Para rodar a aplicação no ambitente de desenvolvimento pode rodar o comando `npm run start:dev` ou para executar sem o live reload execute `npm run start`.
