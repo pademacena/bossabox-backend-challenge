@@ -190,3 +190,60 @@ No arquivo `.env_template` temos o templete do `.env`, crie o seu com a conexão
 Para rodar os testes unitários execute o comando `npm run test`, ele já esta configurado corretamente e fará todas as validações necessárias.
 
 Para rodar a aplicação no ambitente de desenvolvimento pode rodar o comando `npm run start:dev` ou para executar sem o live reload execute `npm run start`.
+
+## Utilizando docker 
+
+Foi criado um arquivo `docker-compose.yml` neste repositório onde está toda a configuração para poder rodar o projeto em sua maquina da maneira mais simples possível, porém irei colocar aqui para facilidade de analise.
+
+Para rodar somente nossa aplicação caso ja tenha uma instancia do MongoDB rodando e nao quiser rodar mais uma imagem docker no seu ambiente voce pode usar o comando abaixo: 
+```
+version: '3.8'
+services:
+  bossabox:
+    image: pauloaugusto/bossabox-challenge:latest
+    container_name: bossabox
+    ports:
+      - "3000:3000"
+    environment:
+      PORT: 3000 # Porta padrão da Aplicação
+      MONGOCONNECT: mongodb://mongodbnouser:27017/mydatabase # Conexão do MongoDB
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      - mongodbnouser
+    command: ["npm", "start"]
+```
+
+Caso queria ter a experiencia de subir por completo para ter certeza que irá funcionar e nao ter nenhum problema alinhando configuração, pode usar o `docker-compose.yml` abaixo:
+
+```
+version: '3.8'
+services:
+  bossabox:
+    image: pauloaugusto/bossabox-challenge:latest
+    container_name: bossabox
+    ports:
+      - "3000:3000"
+    environment:
+      PORT: 3000
+      MONGOCONNECT: mongodb://mongodbnouser:27017/mydatabase
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      - mongodbnouser
+    command: ["npm", "start"]
+
+  mongodbnouser:
+    image: mongo:latest
+    container_name: mongodbnouser
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
+```
+
