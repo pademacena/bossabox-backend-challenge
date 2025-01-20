@@ -227,7 +227,7 @@ services:
       - "3000:3000"
     environment:
       PORT: 3000
-      MONGOCONNECT: mongodb://mongodbnouser:27017/mydatabase
+      MONGOCONNECT: mongodb://mongodbnouser:27017/mydatabase 
     volumes:
       - .:/app
       - /app/node_modules
@@ -246,4 +246,8 @@ services:
 volumes:
   mongo-data:
 ```
+## Arquivo do Postman
 
+Foi disponibilizado um arquivo para executar as requisiçãoes pelo postman, encontra-se no diretório `postman/BossaBox.postman_collection.json`, pode importar e após iniciar a aplicação utilizar para fazer as requisições. 
+
+Também compativel com o Insomnia e com o HTTPie.
